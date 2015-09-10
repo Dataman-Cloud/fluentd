@@ -55,7 +55,8 @@ module Fluent
         @path_suffix = @path[pos+1..-1]
         conf['buffer_path'] ||= "#{@path}"
       else
-        @path_prefix = @path+"."
+        #@path_prefix = @path+"."
+        @path_prefix = @path
         @path_suffix = ".log"
         conf['buffer_path'] ||= "#{@path}.*"
       end
@@ -114,7 +115,8 @@ module Fluent
 
     def generate_path(time_string)
       if @append
-        "#{@path_prefix}#{time_string}#{@path_suffix}#{suffix}"
+        #"#{@path_prefix}#{time_string}#{@path_suffix}#{suffix}"
+        "#{@path_prefix}#{@path_suffix}"
       else
         path = nil
         i = 0
